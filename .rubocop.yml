@@ -1,0 +1,18 @@
+AllCops:
+  Exclude:
+    - 'Rakefile'
+    - 'spec/spec_helper.rb'
+  NewCops: enable
+
+
+Style/Encoding:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

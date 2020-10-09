@@ -2,78 +2,51 @@ require_relative 'spec_helper'
 require_relative '../lib/robot'
 
 describe Robot do
-  subject { Robot.new(@row, @column, @direction) }
+  before do
+    table = Table.new
+    @robot = Robot.new(direction: "WEST", table: table)
+  end
 
   describe "#initialize" do
-    let(:row) { 1 }
-    let(:column) { 2 }
-    let(:direction) { "NORTH" }
-    let(:robot) { Robot.new(row, column, direction) }
-
-    it "initializes robot with place position" do
-      expect(robot.row).to eq 1
-      expect(robot.column).to eq 2
-      expect(robot.direction).to eq "NORTH"
+    it "initializes robot with default position" do
+      expect(@robot.row).to eq 0
+      expect(@robot.column).to eq 0
+      expect(@robot.direction).to eq "WEST"
+      expect(@robot.table.width).to eq 5
+      expect(@robot.table.length).to eq 5
     end
   end
-
-  # describe ".on_table?" do
-  #   let(:row) { 1 }
-  #   let(:column) { 2 }
-  #   let(:direction) { "NORTH" }
-  #   let(:robot) { Robot.new(row, column, direction) }
-
-  #   it "should return true if position chosen is on table" do
-  #     expect(subject.on_table?(row, column)).to eq true
-  #   end
-  # end
-
-  # describe ".on_table?" do
-  #   let(:row) { 5 }
-  #   let(:column) { 7 }
-  #   let(:direction) { "NORTH" }
-  #   let(:robot) { Robot.new(row, column, direction) }
-
-  #   it "should return false if position chosen is not on table" do
-  #     expect(subject.on_table?(row, column)).to eq false
-  #   end
-  # end
 
   describe ".place" do
-    let(:row) { 3 }
-    let(:column) { 3 }
-    let(:direction) { "WEST" }
-    let(:robot) { Robot.new(1, 1, "NORTH") }
-    let(:place) { robot.place(row, column, direction) }
+    context "when robot place position is on the table" do
+      let(:row) { 3 }
+      let(:column) { 3 }
+      let(:direction) { "NORTH" }
+      let(:place) { @robot.place(row: row, column: column, direction: direction) }
 
-    it "puts robot in place position & direction" do
-      expect(place).to eq "3, 3, WEST"
+      it "puts robot in place position & direction" do
+        @robot.place(row: row, column: column, direction: direction)
+
+        expect(@robot.row).to eq 3
+      end
     end
-  end
 
-    describe ".place" do
-    let(:row) { 7 }
-    let(:column) { 3 }
-    let(:direction) { "WEST" }
-    let(:robot) { Robot.new(1, 1, "NORTH") }
-    let(:place) { robot.place(row, column, direction) }
-
-    it "not place robot if not on table" do
-      expect(place).to eq "position not on table"
+    context "when robot off table" do
+      # context - inherit everything from outside, can be redefined & overridden by let here
+      it "raises an error" do
+        expect { @robot.place }.to raise_error
+      end
     end
   end
 
   describe ".report" do
-    let(:row) { 4 }
-    let(:column) { 1 }
     let(:direction) { "EAST" }
-    let(:robot) { Robot.new(row, column, direction) }
-    let(:report) { robot.report(row, column, direction) }
+    let(:row) { @robot.row }
+    let(:column) { @robot.column }
+    let(:report) { @robot.report(row, column, direction) }
 
     it "displays the robot's current position" do
-      expect(report).to eq "4, 1, EAST"
+      expect(report).to eq "0, 0, EAST"
     end
   end
-
-
 end
