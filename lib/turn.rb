@@ -1,26 +1,22 @@
 class Turn
-  attr_accessor :row, :column, :direction
+  attr_reader :robot
 
-  def initialize(row, column, direction)
+  def initialize(robot)
     # initialise turn with current position
-    @row = row
-    @column = column
-    @direction = direction
+    @robot = robot
   end
 
   def turn_left(direction)
     # update direction once turn_left executed
     @new_directions = { NORTH: "WEST", SOUTH: "EAST", EAST: "NORTH", WEST: "SOUTH" }
 
-    @direction = @new_directions[:"#{direction}"]
-    @position = "#{@row}, #{@column}, #{@direction}"
+    @robot.direction = @new_directions[:"#{direction}"]
   end
 
   def turn_right(direction)
     # update direction once turn_right executed
     @new_directions = { NORTH: "EAST", SOUTH: "WEST", EAST: "SOUTH", WEST: "NORTH" }
 
-    @direction = @new_directions[:"#{direction}"]
-    @position = "#{@row}, #{@column}, #{@direction}"
+    @robot.direction = @new_directions[:"#{direction}"]
   end
 end
