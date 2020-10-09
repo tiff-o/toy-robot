@@ -1,22 +1,18 @@
 class Action
-  attr_accessor :row, :column, :direction
-
-  def initialize(row, column, direction)
-    @row = row
-    @column = column
-    @direction = direction
+  def initialize(robot)
+    @robot = robot
   end
 
-  def move(row, column, direction)
-    case direction
+  def move
+    case @robot.direction
     when "WEST"
-      position = "#{@row}, #{@column - 1}, #{@direction}"
+      @robot.column = @robot.column - 1
     when "EAST"
-      position = "#{@row}, #{@column + 1}, #{@direction}"
+      @robot.column = @robot.column + 1
     when "NORTH"
-      position = "#{@row + 1}, #{@column}, #{@direction}"
+      @robot.row = @row + 1
     when "SOUTH"
-      position = "#{@row - 1}, #{@column}, #{@direction}"
+      @robot.row = @row + 1
     end
   end
 end
