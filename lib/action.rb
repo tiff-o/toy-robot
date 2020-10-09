@@ -1,18 +1,29 @@
+require_relative 'app'
+
 class Action
+  attr_reader :robot
+
   def initialize(robot)
     @robot = robot
   end
 
   def move
-    case @robot.direction
-    when "WEST"
-      @robot.column = @robot.column - 1
-    when "EAST"
-      @robot.column = @robot.column + 1
-    when "NORTH"
-      @robot.row = @row + 1
-    when "SOUTH"
-      @robot.row = @row + 1
+    if @robot.direction == "NORTH" && @robot.row.between?(0, 4)
+      @robot.row += 1
+    elsif @robot.direction == "SOUTH" && @robot.row.between?(1, 5)
+      @robot.row -= 1
+    elsif @robot.direction == "EAST" && @robot.column.between?(0, 4)
+      @robot.column += 1
+    elsif @robot.direction == "WEST" && @robot.column.between?(1, 5)
+      @robot.column -= 1
+    else
+      raise "position not on table" # TODO: ERROR MESSAGES
     end
   end
 end
+
+# @table = Table.new
+# @robot = Robot.new(row: 5, column: 5, direction: "NORTH", table: @table)
+# @action = Action.new(@robot)
+
+# puts @action.move
