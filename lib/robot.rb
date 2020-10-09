@@ -1,12 +1,14 @@
 class Robot
-  attr_accessor :row, :column, :direction, :table
+  attr_accessor :row, :column, :direction, :table, :placed
 
-  def initialize(direction:, table:, row: 0, column: 0)
+  def initialize(direction:, table:, row: 0, column: 0, placed: false)
     # create robot with origin(0,0) position
     @row = row
     @column = column
     @direction = direction
     @table = table
+    @placed = placed
+    # TODO PLACED STATUS FOR ACTION & TURN
   end
 
   def place(row:, column:, direction:)
@@ -16,6 +18,7 @@ class Robot
       @row = row
       @column = column
       @direction = direction
+      @placed = true
     else
       raise "position not on table" # TODO: ERROR MESSAGES
     end

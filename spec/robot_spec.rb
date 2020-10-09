@@ -14,6 +14,8 @@ describe Robot do
       expect(@robot.direction).to eq "WEST"
       expect(@robot.table.width).to eq 5
       expect(@robot.table.length).to eq 5
+      expect(@robot.placed).to eq false
+
     end
   end
 
@@ -28,6 +30,8 @@ describe Robot do
         @robot.place(row: row, column: column, direction: direction)
 
         expect(@robot.row).to eq 3
+        expect(@robot.placed).to eq true
+
       end
     end
 
