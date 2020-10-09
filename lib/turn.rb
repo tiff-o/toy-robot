@@ -1,12 +1,10 @@
 class Turn
-  attr_accessor :robot
+  attr_reader :robot
 
   def initialize(robot)
     # initialise turn with current position
     @robot = robot
   end
-
-
 
   def turn_left(direction)
     if @robot.placed # robot must have been placed first

@@ -20,8 +20,16 @@ describe Action do
     let(:row) { 3 }
     let(:column) { 5 }
     let(:direction) { "WEST" }
-    let(:robot) { Robot.new(row: row, column: column, direction: direction, table: table) }
+    let(:robot) { Robot.new(row: row, column: column, direction: direction, table: table, placed: true) }
     let(:action) { Action.new(robot) }
+
+    it "raises error if robot hasn't been placed yet" do
+      @robot = Robot.new(direction: direction, table: table, placed: false)
+      @action = Action.new(@robot)
+        expect { @action.move }.to raise_error
+
+    end
+
 
     context "when new position is still on table" do
       let(:move) { action.move }

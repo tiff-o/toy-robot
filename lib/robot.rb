@@ -8,7 +8,6 @@ class Robot
     @direction = direction
     @table = table
     @placed = placed
-    # TODO PLACED STATUS FOR ACTION & TURN
   end
 
   def place(row:, column:, direction:)

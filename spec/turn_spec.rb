@@ -44,7 +44,6 @@ describe Turn do
       expect(@robot.row).to eq 2
       expect(@robot.column).to eq 4
     end
-  end
 
     it "throws error if robot hasn't been placed first" do
       @robot.placed = false
@@ -52,4 +51,5 @@ describe Turn do
 
       expect { @turn.turn_right(@robot.direction) }.to raise_error
     end
+  end
 end
