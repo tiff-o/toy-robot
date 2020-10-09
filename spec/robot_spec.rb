@@ -34,7 +34,7 @@ describe Robot do
     context "when robot off table" do
       # context - inherit everything from outside, can be redefined & overridden by let here
       it "raises an error" do
-        expect { @robot.place }.to raise_error
+        expect { @robot.place(row: 7, column: 5, direction: "WEST") }.to raise_error
       end
     end
   end
