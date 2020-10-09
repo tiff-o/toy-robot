@@ -1,21 +1,24 @@
 class Robot
   # DIRECTIONS %w[ NORTH EAST SOUTH WEST ]
-  attr_accessor :row, :column, :direction
+  attr_accessor :row, :column, :direction, :table
 
-  def initialize(row=0, column=0, direction)
+  def initialize(row=0, column=0, direction, table)
     # create robot with origin(0,0) position
     @row = row
     @column = column
     @direction = direction
+    @table = table
   end
 
   def place(row, column, direction)
     # place if on table
-    if row.between?(0,5) && column.between?(0,5)
+    if @table.on_table?(row, column)
     # set current position
-    @position = "#{row}, #{column}, #{direction}"
+      @row = row
+      @column = column
+      @direction = direction
     else
-      "position not on table"
+      raise "position not on table"
     end
   end
 
