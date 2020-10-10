@@ -2,7 +2,6 @@ require_relative 'robot'
 require_relative 'table'
 require_relative 'action'
 require_relative 'turn'
-require_relative 'position'
 require_relative '../lib/error/position_error'
 require_relative '../lib/error/placed_error'
 
@@ -11,8 +10,9 @@ test2 = File.open("test/test_2.txt")
 test3 = File.open("test/test_3.txt")
 test4 = File.open("test/test_4.txt")
 test5 = File.open("test/test_5.txt")
+test6 = File.open("test/test_6.txt")
 
-test_files = [test1, test2, test3, test4, test5]
+test_files = [test1, test2, test3, test4, test5, test6]
 
 test_files.each do |file|
   begin

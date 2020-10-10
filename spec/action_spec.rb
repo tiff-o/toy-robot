@@ -42,11 +42,17 @@ describe Action do
     end
 
     context "when new position is not on table" do
-      it "should raise position error" do
+      # it "should raise position error" do
+      #   @robot = Robot.new(row: 0, column: 0, direction: direction, table: table, placed: true)
+      #   @action = Action.new(@robot)
+
+      #   expect { @action.move }.to raise_error(PositionError)
+      # end
+
+      it "rescue position error and prompt user to try again" do
         @robot = Robot.new(row: 0, column: 0, direction: direction, table: table, placed: true)
         @action = Action.new(@robot)
-
-        expect { @action.move }.to raise_error(PositionError)
+        expect(@action.move).to eq "Try again, position not on table."
       end
     end
   end

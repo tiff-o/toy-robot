@@ -17,7 +17,11 @@ class Action
     elsif @robot.direction == "WEST" && @robot.column.between?(1, 5)
       @robot.column -= 1
     else
-      raise PositionError # TODO: ERROR MESSAGES
+      begin
+        raise PositionError
+      rescue PositionError => e
+        "Try again, #{e.message.downcase}."
+      end
     end
   end
 end

@@ -61,3 +61,18 @@ REPORT
 
 OUPUT:
 "Try again, robot must be placed first." (PlacedError)
+
+Test 6
+
+INPUT:
+PLACE 1,2,NORTH
+LEFT
+MOVE
+MOVE
+MOVE
+RIGHT
+MOVE
+REPORT
+
+OUTPUT:
+2,0,NORTH
