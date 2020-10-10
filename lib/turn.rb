@@ -13,7 +13,7 @@ class Turn
 
       @robot.direction = @new_directions[:"#{direction}"]
     else
-      raise "robot needs to be placed first"
+      raise PlacedError unless @robot.placed
     end
   end
 
@@ -24,7 +24,7 @@ class Turn
 
       @robot.direction = @new_directions[:"#{direction}"]
     else
-      raise "robot needs to be placed first"
+      raise PlacedError unless @robot.placed
     end
   end
 end
