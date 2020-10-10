@@ -12,15 +12,13 @@ class Robot
 
   def place(row:, column:, direction:)
     # place if on table
-    if @table.on_table?(row, column)
-      # set current position
-      @row = row
-      @column = column
-      @direction = direction
-      @placed = true
-    else
-      raise "position not on table" # TODO: ERROR MESSAGES
-    end
+    raise PositionError unless @table.on_table?(row, column)
+
+    # set current position
+    @row = row
+    @column = column
+    @direction = direction
+    @placed = true
   end
 
   def report(row, column, direction)

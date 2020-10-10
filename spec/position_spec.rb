@@ -9,5 +9,4 @@ describe Position do
       expect(subject.max).to eq 5
     end
   end
-
 end

@@ -23,7 +23,7 @@ describe Table do
 
       let(:on_table) { @table.on_table?(row, column) }
 
-      it "should return true if within table constraints" do
+      it "should return true" do
         expect(on_table).to eq true
       end
     end
@@ -34,7 +34,7 @@ describe Table do
 
       let(:on_table) { @table.on_table?(row, column) }
 
-      it "should return false if not within table constraints" do
+      it "should return false" do
         expect(on_table).to eq false
       end
     end

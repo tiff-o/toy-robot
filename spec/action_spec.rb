@@ -1,5 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../lib/action'
+require_relative '../lib/errors/position_error'
+require_relative '../lib/errors/placed_error'
 
 describe Action do
   describe "#initialize" do
@@ -10,7 +12,7 @@ describe Action do
     let(:robot) { Robot.new(row: row, column: column, direction: direction, table: table) }
     let(:action) { Action.new(robot) }
 
-    it "initializes action with attributes from robot instance" do
+    it "should initialize action with attributes from robot" do
       expect(action.robot.column).to eq 5
     end
   end
@@ -23,29 +25,28 @@ describe Action do
     let(:robot) { Robot.new(row: row, column: column, direction: direction, table: table, placed: true) }
     let(:action) { Action.new(robot) }
 
-    it "raises error if robot hasn't been placed yet" do
+    it "should raise placed error if robot hasn't been placed yet" do
       @robot = Robot.new(direction: direction, table: table, placed: false)
       @action = Action.new(@robot)
-        expect { @action.move }.to raise_error
 
+      expect { @action.move }.to raise_error(PlacedError)
     end
 
-
-    context "when new position is still on table" do
+    context "when new position is on the table" do
       let(:move) { action.move }
 
-      it "moves robot one position further WEST (left)" do
+      it "should move robot one position further WEST (left)" do
         expect(move).to eq 4
         expect(robot.direction).to eq "WEST"
       end
     end
 
     context "when new position is not on table" do
-      it "raises an error" do
-        @robot = Robot.new(row: 0, column: 0, direction: direction, table: table)
+      it "should raise position error" do
+        @robot = Robot.new(row: 0, column: 0, direction: direction, table: table, placed: true)
         @action = Action.new(@robot)
 
-        expect { @action.move }.to raise_error
+        expect { @action.move }.to raise_error(PositionError)
       end
     end
   end

@@ -1,5 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../lib/robot'
+require_relative '../lib/errors/position_error'
+require_relative '../lib/errors/placed_error'
 
 describe Robot do
   before do
@@ -8,7 +10,7 @@ describe Robot do
   end
 
   describe "#initialize" do
-    it "initializes robot with default position" do
+    it "should create robot in default position (0, 0)" do
       expect(@robot.row).to eq 0
       expect(@robot.column).to eq 0
       expect(@robot.direction).to eq "WEST"
@@ -19,13 +21,13 @@ describe Robot do
   end
 
   describe ".place" do
-    context "when robot place position is on the table" do
+    context "when place position is on the table" do
       let(:row) { 3 }
       let(:column) { 3 }
       let(:direction) { "NORTH" }
       let(:place) { @robot.place(row: row, column: column, direction: direction) }
 
-      it "puts robot in place position & direction" do
+      it "should update robot position with place position" do
         @robot.place(row: row, column: column, direction: direction)
 
         expect(@robot.row).to eq 3
@@ -33,10 +35,10 @@ describe Robot do
       end
     end
 
-    context "when robot off table" do
+    context "when place position is not on table" do
       # context - inherit everything from outside, can be redefined & overridden by let here
-      it "raises an error" do
-        expect { @robot.place(row: 7, column: 5, direction: "WEST") }.to raise_error
+      it "should raise position error" do
+        expect { @robot.place(row: 7, column: 5, direction: "WEST") }.to raise_error(PositionError)
       end
     end
   end
