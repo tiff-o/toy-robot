@@ -1,7 +1,7 @@
 class Robot
   attr_accessor :row, :column, :direction, :table, :placed
 
-  def initialize(direction:, table:, row: 0, column: 0, placed: false)
+  def initialize(table:, direction: "NORTH", row: 0, column: 0, placed: false)
     # create robot with origin(0,0) position
     @row = row
     @column = column
@@ -23,7 +23,7 @@ class Robot
 
   def report(row, column, direction)
     # REPORT - announces X,Y & F of robot
-    @position = "#{row}, #{column}, #{direction}"
+    "#{row}, #{column}, #{direction}"
   end
 end
 

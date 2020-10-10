@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-require_relative '../lib/errors/position_error'
+require_relative '../lib/error/position_error'
 
 describe PositionError do
   describe "#initialize" do
