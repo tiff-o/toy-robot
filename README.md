@@ -114,7 +114,7 @@ To install dependencies run:
 
 To run the test data:
 
-    ruby play.rb
+    ruby lib/play.rb
 
 The results of tests 1 - 6 will then be displayed in your terminal.
 
