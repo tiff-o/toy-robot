@@ -34,6 +34,18 @@ class Robot
     # check if values are nil
     @row && @column && @direction
   end
+
+  class PositionError < StandardError
+    def message
+      "Position not on table"
+    end
+  end
+
+  class PlacedError < StandardError
+    def message
+      "Robot must be placed first"
+    end
+  end
 end
 
 # cannot take command if no valid place position

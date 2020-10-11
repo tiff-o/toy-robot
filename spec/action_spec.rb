@@ -1,7 +1,5 @@
 require_relative 'spec_helper'
 require_relative '../lib/action'
-require_relative '../lib/error/position_error'
-require_relative '../lib/error/placed_error'
 
 describe Action do
   before do
@@ -44,19 +42,19 @@ describe Action do
   context "when robot hasn't been placed" do
     describe "#self.turn_left" do
       it "should raise placed error" do
-        expect { Action.turn_left(@robot) }.to raise_error(PlacedError)
+        expect { Action.turn_left(@robot) }.to raise_error(Robot::PlacedError)
       end
     end
 
     describe "#self.turn_left" do
       it "should raise placed error" do
-        expect { Action.turn_left(@robot) }.to raise_error(PlacedError)
+        expect { Action.turn_left(@robot) }.to raise_error(Robot::PlacedError)
       end
     end
 
     describe "#self.report" do
       it "should raise placed error" do
-        expect { Action.report(@robot) }.to raise_error(PlacedError)
+        expect { Action.report(@robot) }.to raise_error(Robot::PlacedError)
       end
     end
   end
@@ -79,7 +77,7 @@ describe Action do
       it "should raise position error" do
         @robot.place(row: 2, column: 0, direction: "WEST")
 
-        expect { Action.move(@robot) }.to raise_error(PositionError)
+        expect { Action.move(@robot) }.to raise_error(Robot::PositionError)
       end
     end
   end

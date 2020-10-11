@@ -1,7 +1,5 @@
 require_relative 'spec_helper'
 require_relative '../lib/robot'
-require_relative '../lib/error/position_error'
-require_relative '../lib/error/placed_error'
 
 describe Robot do
   before do
@@ -37,7 +35,7 @@ describe Robot do
     context "when place position is not on table" do
       # context - inherit everything from outside, can be redefined & overridden by let here
       it "should raise position error" do
-        expect { @robot.place(row: 7, column: 5, direction: "WEST") }.to raise_error(PositionError)
+        expect { @robot.place(row: 7, column: 5, direction: "WEST") }.to raise_error(Robot::PositionError)
       end
     end
   end
@@ -55,7 +53,7 @@ describe Robot do
     end
     context "when robot has not been placed yet" do
       it "should raise placed error if robot hasn't been placed" do
-        expect { @robot.can_move(row: 5, column: 4, direction: "WEST") }.to raise_error(PlacedError)
+        expect { @robot.can_move(row: 5, column: 4, direction: "WEST") }.to raise_error(Robot::PlacedError)
       end
     end
   end
