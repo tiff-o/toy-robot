@@ -46,9 +46,15 @@ describe Action do
       end
     end
 
-    describe "#self.turn_left" do
+    describe "#self.turn_right" do
       it "should raise placed error" do
-        expect { Action.turn_left(@robot) }.to raise_error(Robot::PlacedError)
+        expect { Action.turn_right(@robot) }.to raise_error(Robot::PlacedError)
+      end
+    end
+
+    describe "#self.move" do
+      it "should raise placed error" do
+        expect { Action.move(@robot) }.to raise_error(Robot::PlacedError)
       end
     end
 
@@ -59,7 +65,7 @@ describe Action do
     end
   end
 
-  context "when new position is on the table" do
+  context "when robot has been placed & new position is on the table" do
     describe "#self.move" do
       it "should move robot one position forward in facing direction (WEST)" do
         @robot.place(row: 2, column: 4, direction: "WEST")
@@ -72,7 +78,7 @@ describe Action do
     end
   end
 
-  context "when new position is not on the table" do
+  context "when robot has been placed & new position is not on the table" do
     describe "#self.move" do
       it "should raise position error" do
         @robot.place(row: 2, column: 0, direction: "WEST")
