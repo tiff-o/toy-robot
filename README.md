@@ -95,6 +95,8 @@ production. It is not required to provide any graphical output showing the
 movement of the toy robot.
 
 # SETUP
+------------------------
+
 
 To start, you'll need:
 
@@ -104,24 +106,28 @@ To start, you'll need:
 
 For bundler gem run:
 
-  gem install bundler
+    gem install bundler
 
 To install dependencies run:
 
-  bundle install
+    bundle install
 
 # EXECUTE SOLUTION
+------------------------
+
 
 To run the test data:
 
-  ruby play.rb
+    ruby play.rb
 
 The results of tests 1 - 6 will then be displayed in your terminal.
 
 Expected output can be found in output/results.txt and individual test files in toy-robot/test.
 
 # TEST
+------------------------
+
 
 Rspec tests can be run via terminal command:
 
-  rspec
+    rspec
