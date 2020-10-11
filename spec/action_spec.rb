@@ -18,9 +18,9 @@ describe Action do
       it "should turn robot LEFT without changing row & column position" do
         Action.turn_left(@robot)
 
-        expect(@robot.direction).to eq "SOUTH"
         expect(@robot.row).to eq 2
         expect(@robot.column).to eq 4
+        expect(@robot.direction).to eq "SOUTH"
       end
     end
 
@@ -28,9 +28,15 @@ describe Action do
       it "should turn robot RIGHT without changing row & column position" do
         Action.turn_right(@robot)
 
-        expect(@robot.direction).to eq "NORTH"
         expect(@robot.row).to eq 2
         expect(@robot.column).to eq 4
+        expect(@robot.direction).to eq "NORTH"
+      end
+    end
+
+    describe "#self.report" do
+      it "displays the robot's current position" do
+        expect(Action.report(@robot)).to eq "2, 4, WEST"
       end
     end
   end
@@ -45,6 +51,12 @@ describe Action do
     describe "#self.turn_left" do
       it "should raise placed error" do
         expect { Action.turn_left(@robot) }.to raise_error(PlacedError)
+      end
+    end
+
+    describe "#self.report" do
+      it "should raise placed error" do
+        expect { Action.report(@robot) }.to raise_error(PlacedError)
       end
     end
   end

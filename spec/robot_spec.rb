@@ -42,14 +42,6 @@ describe Robot do
     end
   end
 
-  # describe ".position" do
-  #   let(:position) { @robot.position(row: @robot.row, column: @robot.column, direction: @robot.direction) }
-
-  #   it "displays the robot's current position" do
-
-  #     expect(position).to eq "4, 3, EAST"
-  #   end
-  # end
   describe ".can_move" do
     context "when robot has been placed" do
       it "should move robot to new position" do

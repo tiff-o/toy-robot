@@ -1,5 +1,5 @@
 module Action
-  # self = turn object = Turn.new
+  # self = Action.new
   def self.turn_left(robot)
     # update direction once turn_left executed
     new_direction = { "NORTH" => "WEST", "SOUTH" => "EAST", "EAST" => "NORTH", "WEST" => "SOUTH" }
@@ -15,6 +15,7 @@ module Action
   end
 
   def self.move(robot)
+    # MOVE - move one position in facing direction
     destination = case robot.direction
                   when "NORTH"
                     { row: robot.row + 1, column: robot.column }
@@ -27,5 +28,11 @@ module Action
                   end
     robot.can_move(row: destination[:row], column: destination[:column], direction: robot.direction)
     # can_move checks if position is on table & moves position if it is
+  end
+
+  def self.report(robot)
+    # REPORT - announces X,Y & F of robot
+    robot.can_move(row: robot.row, column: robot.column, direction: robot.direction)
+    p ("#{robot.row}, #{robot.column}, #{robot.direction}").strip
   end
 end

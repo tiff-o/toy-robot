@@ -28,13 +28,6 @@ class Robot
     # if already placed, allow position to be updated (robot can move)
   end
 
-  # def position(row:, column:, direction:)
-  #   # TODO REPORT - announces X,Y & F of robot
-  #   p @row = row
-  #   p @column = column
-  #   p @direction = direction
-  # end
-
   private
 
   def placed?
