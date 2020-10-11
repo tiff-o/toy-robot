@@ -2,7 +2,6 @@ require_relative 'robot'
 require_relative 'table'
 require_relative 'action'
 
-
 test1 = File.open("test/test_1.txt")
 test2 = File.open("test/test_2.txt")
 test3 = File.open("test/test_3.txt")

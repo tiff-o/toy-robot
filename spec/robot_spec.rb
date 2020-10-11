@@ -33,7 +33,6 @@ describe Robot do
     end
 
     context "when place position is not on table" do
-      # context - inherit everything from outside, can be redefined & overridden by let here
       it "should raise position error" do
         expect { @robot.place(row: 7, column: 5, direction: "WEST") }.to raise_error(Robot::PositionError)
       end
