@@ -95,12 +95,11 @@ production. It is not required to provide any graphical output showing the
 movement of the toy robot.
 
 # SETUP
-------------------------
 
 To start, you'll need:
 
 - Ruby 2.6.6
-- bundler gem
+- Bundler gem
 - RSpec 3.9'
 
 For bundler gem run:
@@ -112,7 +111,6 @@ To install dependencies run:
     bundle install
 
 # EXECUTE SOLUTION
-------------------------
 
 To run the test data:
 
@@ -123,7 +121,6 @@ The results of tests 1 - 6 will then be displayed in your terminal.
 Expected output can be found in output/results.txt and individual test files in toy-robot/test.
 
 # TEST
-------------------------
 
 Rspec tests can be run via terminal command:
 
