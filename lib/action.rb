@@ -16,6 +16,7 @@ module Action
 
   def self.move(robot)
     # MOVE - move one position in facing direction
+    raise Robot::PlacedError unless robot.placed?
     destination = case robot.direction
                   when "NORTH"
                     { row: robot.row + 1, column: robot.column }
@@ -25,8 +26,6 @@ module Action
                     { row: robot.row, column: robot.column + 1 }
                   when "WEST"
                     { row: robot.row, column: robot.column - 1 }
-                  when nil
-                    raise Robot::PlacedError
                   end
     robot.can_move(row: destination[:row], column: destination[:column], direction: robot.direction)
     # can_move checks if position is on table & moves position if it is

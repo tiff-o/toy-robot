@@ -27,8 +27,6 @@ class Robot
     # if already placed, allow position to be updated (robot can move)
   end
 
-  private
-
   def placed?
     # check if values are nil
     @row && @column && @direction
