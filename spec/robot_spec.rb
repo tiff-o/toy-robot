@@ -5,18 +5,17 @@ require_relative '../lib/error/placed_error'
 
 describe Robot do
   before do
-    table = Table.new
-    @robot = Robot.new(direction: "WEST", table: table)
+    @table = Table.new
+    @robot = Robot.new(table: @table)
   end
 
   describe "#initialize" do
-    it "should create robot in default position (0, 0)" do
-      expect(@robot.row).to eq 0
-      expect(@robot.column).to eq 0
-      expect(@robot.direction).to eq "WEST"
-      expect(@robot.table.width).to eq 5
-      expect(@robot.table.length).to eq 5
-      expect(@robot.placed).to eq false
+    it "should create robot with nil position" do
+      expect(@robot.row).to eq nil
+      expect(@robot.column).to eq nil
+      expect(@robot.direction).to eq nil
+      expect(@table.width).to eq 5
+      expect(@table.length).to eq 5
     end
   end
 
@@ -25,13 +24,13 @@ describe Robot do
       let(:row) { 3 }
       let(:column) { 3 }
       let(:direction) { "NORTH" }
-      let(:place) { @robot.place(row: row, column: column, direction: direction) }
 
       it "should update robot position with place position" do
         @robot.place(row: row, column: column, direction: direction)
 
         expect(@robot.row).to eq 3
-        expect(@robot.placed).to eq true
+        expect(@robot.column).to eq 3
+        expect(@robot.direction).to eq "NORTH"
       end
     end
 
@@ -43,14 +42,29 @@ describe Robot do
     end
   end
 
-  describe ".report" do
-    let(:direction) { "EAST" }
-    let(:row) { @robot.row }
-    let(:column) { @robot.column }
-    let(:report) { @robot.report(row, column, direction) }
+  # describe ".position" do
+  #   let(:position) { @robot.position(row: @robot.row, column: @robot.column, direction: @robot.direction) }
 
-    it "displays the robot's current position" do
-      expect(report).to eq "0, 0, EAST"
+  #   it "displays the robot's current position" do
+
+  #     expect(position).to eq "4, 3, EAST"
+  #   end
+  # end
+  describe ".can_move" do
+    context "when robot has been placed" do
+      it "should move robot to new position" do
+        @robot.place(row: 3, column: 2, direction: "NORTH")
+        @robot.can_move(row: 5, column: 4, direction: "WEST")
+
+        expect(@robot.row).to eq 5
+        expect(@robot.column).to eq 4
+        expect(@robot.direction).to eq "WEST"
+      end
+    end
+    context "when robot has not been placed yet" do
+      it "should raise placed error if robot hasn't been placed" do
+        expect { @robot.can_move(row: 5, column: 4, direction: "WEST") }.to raise_error(PlacedError)
+      end
     end
   end
 end
