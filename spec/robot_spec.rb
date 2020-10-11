@@ -41,7 +41,7 @@ describe Robot do
   end
 
   describe ".can_move" do
-    context "when robot has been placed" do
+    context "when robot has already been placed" do
       it "should move robot to new position" do
         @robot.place(row: 3, column: 2, direction: "NORTH")
         @robot.can_move(row: 5, column: 4, direction: "WEST")
@@ -52,7 +52,7 @@ describe Robot do
       end
     end
     context "when robot has not been placed yet" do
-      it "should raise placed error if robot hasn't been placed" do
+      it "should raise placed error" do
         expect { @robot.can_move(row: 5, column: 4, direction: "WEST") }.to raise_error(Robot::PlacedError)
       end
     end

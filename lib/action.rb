@@ -17,6 +17,7 @@ module Action
   def self.move(robot)
     # MOVE - move one position in facing direction
     raise Robot::PlacedError unless robot.placed?
+
     destination = case robot.direction
                   when "NORTH"
                     { row: robot.row + 1, column: robot.column }
