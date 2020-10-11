@@ -1,27 +1,31 @@
-class Action
-  attr_reader :robot
+module Action
+  # self = turn object = Turn.new
+  def self.turn_left(robot)
+    # update direction once turn_left executed
+    new_direction = { "NORTH" => "WEST", "SOUTH" => "EAST", "EAST" => "NORTH", "WEST" => "SOUTH" }
 
-  def initialize(robot)
-    @robot = robot
+    robot.can_move(row: robot.row, column: robot.column, direction: new_direction[robot.direction])
   end
 
-  def move
-    raise PlacedError unless @robot.placed
+  def self.turn_right(robot)
+    # update direction once turn_right executed
+    new_direction = { "NORTH" => "EAST", "SOUTH" => "WEST", "EAST" => "SOUTH", "WEST" => "NORTH" }
 
-    if @robot.direction == "NORTH" && @robot.row.between?(0, 4)
-      @robot.row += 1
-    elsif @robot.direction == "SOUTH" && @robot.row.between?(1, 5)
-      @robot.row -= 1
-    elsif @robot.direction == "EAST" && @robot.column.between?(0, 4)
-      @robot.column += 1
-    elsif @robot.direction == "WEST" && @robot.column.between?(1, 5)
-      @robot.column -= 1
-    else
-      begin
-        raise PositionError
-      rescue PositionError => e
-        "Try again, #{e.message.downcase}."
-      end
-    end
+    robot.can_move(row: robot.row, column: robot.column, direction: new_direction[robot.direction])
+  end
+
+  def self.move(robot)
+    destination = case robot.direction
+                  when "NORTH"
+                    { row: robot.row + 1, column: robot.column }
+                  when "SOUTH"
+                    { row: robot.row - 1, column: robot.column }
+                  when "EAST"
+                    { row: robot.row, column: robot.column + 1 }
+                  when "WEST"
+                    { row: robot.row, column: robot.column - 1 }
+                  end
+    robot.can_move(row: destination[:row], column: destination[:column], direction: robot.direction)
+    # can_move checks if position is on table & moves position if it is
   end
 end

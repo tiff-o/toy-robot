@@ -4,56 +4,77 @@ require_relative '../lib/error/position_error'
 require_relative '../lib/error/placed_error'
 
 describe Action do
-  describe "#initialize" do
-    let(:table) { Table.new }
-    let(:row) { 3 }
-    let(:column) { 5 }
-    let(:direction) { "NORTH" }
-    let(:robot) { Robot.new(row: row, column: column, direction: direction, table: table) }
-    let(:action) { Action.new(robot) }
-
-    it "should initialize action with attributes from robot" do
-      expect(action.robot.column).to eq 5
-    end
+  before do
+    table = Table.new
+    @robot = Robot.new(table: table)
   end
 
-  describe ".move" do
-    let(:table) { Table.new }
-    let(:row) { 3 }
-    let(:column) { 5 }
-    let(:direction) { "WEST" }
-    let(:robot) { Robot.new(row: row, column: column, direction: direction, table: table, placed: true) }
-    let(:action) { Action.new(robot) }
-
-    it "should raise placed error if robot hasn't been placed yet" do
-      @robot = Robot.new(direction: direction, table: table, placed: false)
-      @action = Action.new(@robot)
-
-      expect { @action.move }.to raise_error(PlacedError)
+  context "when robot has been placed" do
+    before do
+      @robot.place(row: 2, column: 4, direction: "WEST")
     end
 
-    context "when new position is on the table" do
-      let(:move) { action.move }
+    describe "#self.turn_left" do
+      it "should turn robot LEFT without changing row & column position" do
+        Action.turn_left(@robot)
 
-      it "should move robot one position further WEST (left)" do
-        expect(move).to eq 4
-        expect(robot.direction).to eq "WEST"
+        expect(@robot.direction).to eq "SOUTH"
+        expect(@robot.row).to eq 2
+        expect(@robot.column).to eq 4
       end
     end
 
-    context "when new position is not on table" do
-      # it "should raise position error" do
-      #   @robot = Robot.new(row: 0, column: 0, direction: direction, table: table, placed: true)
-      #   @action = Action.new(@robot)
+    describe "#self.turn_right" do
+      it "should turn robot RIGHT without changing row & column position" do
+        Action.turn_right(@robot)
 
-      #   expect { @action.move }.to raise_error(PositionError)
-      # end
+        expect(@robot.direction).to eq "NORTH"
+        expect(@robot.row).to eq 2
+        expect(@robot.column).to eq 4
+      end
+    end
+  end
 
-      it "rescue position error and prompt user to try again" do
-        @robot = Robot.new(row: 0, column: 0, direction: direction, table: table, placed: true)
-        @action = Action.new(@robot)
-        expect(@action.move).to eq "Try again, position not on table."
+  context "when robot hasn't been placed" do
+    describe "#self.turn_left" do
+      it "should raise placed error" do
+        expect { Action.turn_left(@robot) }.to raise_error(PlacedError)
+      end
+    end
+
+    describe "#self.turn_left" do
+      it "should raise placed error" do
+        expect { Action.turn_left(@robot) }.to raise_error(PlacedError)
+      end
+    end
+  end
+
+  context "when new position is on the table" do
+    describe "#self.move" do
+      it "should move robot one position forward in facing direction (WEST)" do
+        @robot.place(row: 2, column: 4, direction: "WEST")
+        Action.move(@robot)
+
+        expect(@robot.row).to eq 2
+        expect(@robot.column).to eq 3
+        expect(@robot.direction).to eq "WEST"
+      end
+    end
+  end
+
+  context "when new position is not on the table" do
+    describe "#self.move" do
+      it "should raise position error" do
+        @robot.place(row: 2, column: 0, direction: "WEST")
+
+        expect { Action.move(@robot) }.to raise_error(PositionError)
       end
     end
   end
 end
+
+# it "rescue position error and prompt user to try again" do
+#   @robot = Robot.new(row: 0, column: 0, direction: direction, table: table, placed: true)
+#   @action = Action.new(@robot)
+#   expect(@action.move).to eq "Try again, position not on table."
+# end
