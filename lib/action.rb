@@ -33,6 +33,6 @@ module Action
   def self.report(robot)
     # REPORT - announces X,Y & F of robot
     robot.can_move(row: robot.row, column: robot.column, direction: robot.direction)
-    p "#{robot.row}, #{robot.column}, #{robot.direction}".strip
+    "#{robot.row}, #{robot.column}, #{robot.direction}".strip
   end
 end

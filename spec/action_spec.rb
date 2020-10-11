@@ -33,7 +33,7 @@ describe Action do
     end
 
     describe "#self.report" do
-      it "displays the robot's current position" do
+      it "should display the robot's current position" do
         expect(Action.report(@robot)).to eq "2, 4, WEST"
       end
     end
