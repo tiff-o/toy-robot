@@ -4,7 +4,7 @@ require_relative '../lib/table'
 describe Table do
   before do
     @table = Table.new
-    @robot = Robot.new(direction: "WEST", table: @table)
+    @robot = Robot.new(table: @table)
   end
 
   describe "#initialize" do

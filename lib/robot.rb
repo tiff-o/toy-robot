@@ -1,7 +1,7 @@
 class Robot
   attr_reader :row, :column, :direction, :table
 
-  def initialize(table)
+  def initialize(table:)
     # create robot with nil position
     @table = table
     @row = nil
@@ -11,9 +11,8 @@ class Robot
 
   def place(row:, column:, direction:)
     # place if on table
-    raise PositionError unless @table[:table].on_table?(row, column) # @table is the table used to initialize robot
+    raise PositionError unless @table.on_table?(row, column) # @table is the table used to initialize robot
 
-    # TODO: CHECK IF @TABLE NEEDS TO HOLD TABLE HASH?
     @row = row
     @column = column
     @direction = direction
