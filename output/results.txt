@@ -1,6 +1,6 @@
-Expected output from test files
-
-Test 1
+EXPECTED OUTPUT FROM TEST FILES
+-------------------------------
+# Test 1 #
 
 INPUT:
 PLACE 1,2,NORTH
@@ -12,8 +12,9 @@ REPORT
 
 OUTPUT:
 "Your Robot's current position is 3,2,NORTH"
+-------------------------------
 
-Test 2
+# Test 2 #
 
 INPUT:
 PLACE 2,2,WEST
@@ -24,8 +25,9 @@ REPORT
 
 OUTPUT:
 "Your Robot's current position is 3,1,NORTH"
+-------------------------------
 
-Test 3
+# Test 3 #
 
 INPUT:
 PLACE 6,2,WEST
@@ -39,8 +41,9 @@ OUTPUT:
 "Try again, chosen position not on table" (PositionError) then
 "Try again, robot needs to be placed first" (PlacedError) then
 "Your Robot's current position is 5,2,EAST"
+-------------------------------
 
-test 4
+# Test 4 #
 
 INPUT:
 PLACE 3,2,EAST
@@ -52,8 +55,9 @@ REPORT
 
 OUTPUT:
 "Your Robot's current position is 4,0,WEST"
+-------------------------------
 
-Test 5
+# Test 5 #
 
 INPUT:
 MOVE
@@ -66,8 +70,9 @@ OUPUT:
 "Try again, robot must be placed first." (PlacedError) then
 "Try again, robot must be placed first." (PlacedError) then
 "Your Robot's current position is 4,0,WEST"
+-------------------------------
 
-Test 6
+# Test 6 #
 
 INPUT:
 PLACE 1,2,NORTH
@@ -82,3 +87,4 @@ REPORT
 OUTPUT:
 "Try again, position not on table" then
 "Your Robot's current position is 2,0,NORTH"
+-------------------------------
