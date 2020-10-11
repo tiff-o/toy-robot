@@ -6,9 +6,3 @@ source 'https://rubygems.org'
 
 gem 'rspec', '~> 3.9'
 # for tests/rake tasks
-
-gem 'rubocop', '~> 0.92.0', require: false
-# for style errors
-
-gem 'pry', '~> 0.13.1'
-# for debugging
