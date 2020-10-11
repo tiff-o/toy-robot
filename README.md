@@ -97,7 +97,6 @@ movement of the toy robot.
 # SETUP
 ------------------------
 
-
 To start, you'll need:
 
 - Ruby 2.6.6
@@ -115,7 +114,6 @@ To install dependencies run:
 # EXECUTE SOLUTION
 ------------------------
 
-
 To run the test data:
 
     ruby play.rb
@@ -126,7 +124,6 @@ Expected output can be found in output/results.txt and individual test files in 
 
 # TEST
 ------------------------
-
 
 Rspec tests can be run via terminal command:
 
